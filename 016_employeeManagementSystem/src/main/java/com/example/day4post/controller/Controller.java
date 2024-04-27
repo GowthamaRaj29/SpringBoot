@@ -59,7 +59,7 @@ return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
 
 // @PreAuthorize("hasAuthority('ADMIN')")
 
-public ResponseEntity<List<User>> getAllUsers() 
+public ResponseEntity<List<User>> getAllUsers()
 {
 
 List<User> users = userService.getAllusers();
@@ -72,12 +72,37 @@ return new ResponseEntity<>(users, HttpStatus.OK);
 
 // @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
 
-public ResponseEntity<User> updateUser(@NonNull @PathVariable String email,@RequestBody User updateRequest) 
+public ResponseEntity<User> updateUser(@NonNull @PathVariable String email, @RequestBody User updateRequest) 
 {
 
 User updated = userService.updateUser(email, updateRequest);
 
 return new ResponseEntity<>(updated, HttpStatus.OK);
+
+}
+@PutMapping("updateProfession/{profession}")
+
+// @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
+
+public ResponseEntity<User> updateProfession(@NonNull @PathVariable String profession,@RequestBody User updateRequest) 
+{
+
+User updateduser= userService.updateProfession(profession, updateRequest);
+
+return new ResponseEntity<>(updateduser, HttpStatus.OK);
+
+}
+
+@PutMapping("updateSalary/{salary}")
+
+// @PreAuthorize("hasAuthority('USER') or hasAuthority('ADMIN')")
+
+public ResponseEntity<User> updateSalary(@PathVariable int salary,@RequestBody User updateRequest) 
+{
+
+User updatedsalary= userService.updateSalary(salary, updateRequest);
+
+return new ResponseEntity<>(updatedsalary, HttpStatus.OK);
 
 }
 

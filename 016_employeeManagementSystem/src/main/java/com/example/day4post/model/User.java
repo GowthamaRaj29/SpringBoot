@@ -14,6 +14,8 @@ public class User
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    private String profession;
+    private int salary;
     private String email;
     private String password;
     private String conPassword;
@@ -38,12 +40,26 @@ public class User
     public String getEmail() {
         return email;
     }
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+    public String getProfession() {
+        return profession;
+    }
+    public int getSalary() {
+        return salary;
+    }
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
     public void setEmail(String email) {
         this.email = email;
     }
-    public User(int id, String name, String email, String password, String conPassword) {
+    public User(int id, String name, String profession, int salary, String email, String password, String conPassword) {
         this.id = id;
         this.name = name;
+        this.profession = profession;
+        this.salary = salary;
         this.email = email;
         this.password = password;
         this.conPassword=conPassword;

@@ -56,6 +56,48 @@ public class Service_1
         .orElseThrow(() -> new RuntimeException("User not found with this email: "+ email));
 
     }
+    public Optional<User> getModelByprofession(String profession)
+    {
+        return ab.findByProfession(profession);
+    }
+
+    //updateUser
+
+    public User updateProfession(@NonNull String profession,@RequestBody User user)
+    {
+        return ab.findByProfession(profession)
+        .map(existingUser -> {
+        existingUser.setName(user.getName());
+        existingUser.setProfession(user.getProfession());
+        return ab.save(existingUser);
+
+        }
+        )
+
+        .orElseThrow(() -> new RuntimeException("User not found with this profession: "+ profession));
+
+    }
+    public Optional<User> getModelBySalary(int salary)
+    {
+        return ab.findBySalary(salary);
+    }
+
+    //updateUser
+
+    public User updateSalary(int salary,@RequestBody User user)
+    {
+        return ab.findBySalary(salary)
+        .map(existingUser -> {
+        existingUser.setName(user.getName());
+        existingUser.setSalary(user.getSalary());
+        return ab.save(existingUser);
+
+        }
+        )
+
+        .orElseThrow(() -> new RuntimeException("User not found with this salary: "+ salary));
+
+    }
     public void removeUser(@NonNull Integer userId)
     {
         ab.deleteById(userId);
